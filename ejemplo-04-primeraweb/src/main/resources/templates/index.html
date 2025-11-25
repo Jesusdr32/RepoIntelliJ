@@ -3,8 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Index</title>
+    <style>
+        .red {
+            color: red;
+        }
+        .negrita {
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <h1>Esta es la página inicial de mi sitio web</h1>
+    <p>Usuario: </p>
+    <ul>
+        <li th:text="${user.getEmail()}"></li>
+        <li th:text="${user.firstName}"></li>
+        <li th:text="${user.lastName}"></li>
+        <li th:text="${user.getBirthDate()}"></li>
+    </ul>
+    <p>Nombre del usuario <span th:text="${user.getFirstName()}">Nombre</span></p>
+
+    <p>Hora a la que se ha generado la página:
+        <span th:attr="class=${isRed?'red':''}"
+              th:classappend ="${isBold?'negrita':''}"
+              th:text="${currentTime}">Aqui quiero la hora</span>
+    </p>
+    <p th:if="${isRed}">En el modelo aparece que la fecha tiene que ser en color rojo</p>
+    <p th:unless="${isBold}">En el modelo no se indica que sea negrita</p>
+
+    <h2></h2>
+
+    <div th:switch="${dayOfWeek}">
+        <p th:case="1">Lunes</p>
+        <p th:case="2">Martes</p>
+        <p th:case="3">Miercoles</p>
+        <p th:case="4">Jueves</p>
+        <p th:case="5">Viernes</p>
+        <p th:case="6">Sábado</p>
+        <p th:case="7">Domingo</p>
+        <p th:case="*">Valor no válido</p>
+    </div>
+
+    <h2>Listado de nombres generados</h2>
+    <ul th:unless="${names.isEmpty()}">
+        <li th:each="name, itemStat: ${names}" th:text="${name}" th:class="${itemStat.even?'red':''}" th:attr="data-index=${itemStat.index}">Nombre 1</li>
+        <li>Nombre 2</li>
+        <li>Nombre 3</li>
+        <li>Nombre 4</li>
+    </ul>
 </body>
 </html>

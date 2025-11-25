@@ -1,9 +1,12 @@
 package dwes.ejemplo04primeraweb.repositories;
 
 import dwes.ejemplo04primeraweb.entities.User;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 
+@Repository
 public class UserRepositoryImpl implements UserRepository {
     @Override
     public User findUserByEmail(String email) {

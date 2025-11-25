@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>dwes</groupId>
-    <artifactId>ejemplo-04-primeraweb</artifactId>
+    <artifactId>ejercicio-04-primeraweb</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ejemplo-04-primeraweb</name>
-    <description>ejemplo-04-primeraweb</description>
+    <name>ejercicio-04-primeraweb</name>
+    <description>ejercicio-04-primeraweb</description>
     <url/>
     <licenses>
         <license/>
@@ -53,11 +53,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webmvc-test</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.datafaker</groupId>
-            <artifactId>datafaker</artifactId>
-            <version>2.5.3</version>
         </dependency>
     </dependencies>
 
