@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Predicciones semanales</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: sans-serif;
+            font-size: 0.9rem;
+        }
+
+        thead {
+            background: #f3f4f6;
+        }
+
+        thead th {
+            padding: 0.75rem;
+            font-weight: 600;
+            border-bottom: 2px solid #d1d5db;
+            text-align: left;
+        }
+
+        tbody td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        tbody tr:hover {
+            background: #f9fafb;
+        }
+
+        /* Opcional: franjas */
+        tbody tr:nth-child(even) {
+            background: #fafafa;
+        }
+
+        .uv-verde {
+            background-color: #90ee90;
+        }
+
+        .uv-naranja {
+            background-color: #ffcc66;
+        }
+
+        .uv-rojo {
+            background-color: #ff6666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Predicciones Semanales</h1>
+    <table>
+        <thead>
+        <tr>
+            <th scope="col">Fecha</th>
+            <th scope="col">Probabilidad de Precipitación</th>
+            <th scope="col">Temperatura Mínima</th>
+            <th scope="col">Temperatura Máxima</th>
+            <th scope="col">Nivel de alerta UV</th>
+            <th scope="col">Imágen según probabilidad de precipitación</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p : ${predicciones}">
+            <td th:text="${#temporals.format(p.fecha, 'dd/MM/yyyy')}"></td>
+            <td th:text="${p.probabilidadPrecipitacion}"></td>
+            <td th:text="${p.tempMin}"></td>
+            <td th:text="${p.tempMax}"></td>
+            <td th:text="${p.alertaUV}" th:classappend="${p.alertaUV} <= 1 ? 'uv-verde' : (${p.alertaUV} <= 3 ? 'uv-naranja' : 'uv-rojo')"></td>
+            <td>
+                <img src="https://www.aemet.es/imagenes/png/estado_cielo/11_g.png" th:if="${p.probabilidadPrecipitacion < 25}" th:alt="${p.probabilidadPrecipitacion}" width="50">
+                <img src="https://www.aemet.es/imagenes/png/estado_cielo/12_g.png" th:if="${p.probabilidadPrecipitacion >= 25 && p.probabilidadPrecipitacion < 50}" th:alt="${p.probabilidadPrecipitacion}" width="50">
+                <img src="https://www.aemet.es/imagenes/png/estado_cielo/14_g.png" th:if="${p.probabilidadPrecipitacion >= 50 && p.probabilidadPrecipitacion < 75}" th:alt="${p.probabilidadPrecipitacion}" width="50">
+                <img src="https://www.aemet.es/imagenes/png/estado_cielo/25_g.png" th:if="${p.probabilidadPrecipitacion >= 75}" th:alt="${p.probabilidadPrecipitacion}" width="50">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

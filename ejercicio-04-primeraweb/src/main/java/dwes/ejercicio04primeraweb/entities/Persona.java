@@ -1,14 +1,13 @@
 package dwes.ejercicio04primeraweb.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.*;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 @AllArgsConstructor
 @Getter
+@Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Builder
 public class Persona {
@@ -17,5 +16,8 @@ public class Persona {
     private final String lastName;
     private final String dni;
     private final LocalDate birthDate;
-    private final int actualAge;
+
+    public int getEdad() {
+        return  Period.between(birthDate, LocalDate.now()).getYears();
+    }
 }

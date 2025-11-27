@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Personas</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: sans-serif;
+            font-size: 0.9rem;
+        }
+
+        thead {
+            background: #f3f4f6;
+        }
+
+        thead th {
+            padding: 0.75rem;
+            font-weight: 600;
+            border-bottom: 2px solid #d1d5db;
+            text-align: left;
+        }
+
+        tbody td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        tbody tr:hover {
+            background: #f9fafb;
+        }
+
+        /* Opcional: franjas */
+        tbody tr:nth-child(even) {
+            background: #fafafa;
+        }
+    </style>
+</head>
+<body>
+    <h1>Listado de Personas</h1>
+    <!--<ul>
+        <li th:each="p : ${personas}">
+            <span th:text="${p.firstName}"></span>
+            <span th:text="${p.lastName}"></span>
+            - DNI: <span th:text="${p.dni}"></span>
+            - Fecha de Nacimiento <span th:text="${#temporals.format(p.birthDate, 'dd/MM/yyyy')}"></span>
+            - Edad: <span th:text="${p.getEdad()}"></span>
+        </li>
+    </ul>-->
+    <table>
+        <thead>
+        <tr>
+            <th scope="col">DNI</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Fecha de Nacimiento</th>
+            <th scope="col">Edad</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p : ${personas}">
+            <td th:text="${p.dni}">DNI</td>
+            <td th:text="${p.firstName}"></td>
+            <td th:text="${p.lastName}"></td>
+            <td th:text="${#temporals.format(p.birthDate, 'dd/MM/yyyy')}"></td>
+            <td th:text="${p.edad}"></td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Persona</title>
+    <style>
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            font-size: 0.95rem;
+        }
+
+        li {
+            padding: 0.6rem 0.4rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        li span:first-child {
+            font-weight: 600;
+            color: #374151;
+            min-width: 120px; /* etiqueta alineada */
+        }
+
+        li span:last-child {
+            color: #4b5563;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Una persona</h1>
+    <ul>
+        <li><span>DNI: </span><span th:text="${persona.dni}"></span></li>
+        <li><span>Nombre: </span><span th:text="${persona.firstName}"></span></li>
+        <li><span>Apellido: </span><span th:text="${persona.lastName}"></span></li>
+        <li><span>Fecha de Nacimiento: </span><span th:text="${#temporals.format(persona.birthDate, 'dd/MM/yyyy')}"></span></li>
+        <li><span>Edad: </span><span th:text="${persona.edad}"></span></li>
+    </ul>
+    <!--<p>Nombre: <span th:text="${persona.firstName}"></span></p>
+    <p>Apellidos: <span th:text="${persona.lastName}"></span></p>
+    <p>DNI: <span th:text="${persona.dni}"></span></p>
+    <p>Fecha de Nacimiento: <span th:text="${#temporals.format(persona.birthDate, 'dd/MM/yyyy')}"></span></p>
+    <p>Edad: <span th:text="${persona.getEdad()}"></span></p>-->
+</body>
+</html>
