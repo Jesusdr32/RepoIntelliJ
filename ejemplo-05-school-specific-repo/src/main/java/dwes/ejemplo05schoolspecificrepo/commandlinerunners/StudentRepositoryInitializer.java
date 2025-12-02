@@ -17,7 +17,7 @@ public class StudentRepositoryInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         for (int i = 0; i < STUDENT_COUNT; i++) {
-            Student student = Student.builder().firstName("Nombre" + i).lastName("Apellido" + i).email(String.format("email%s@iesclaradelrey.es", i)).build();
+            Student student = Student.builder().firstName("Nombre" + i).lastName("Apellido" + i).email(String.format("emailEstudiante%s@iesclaradelrey.es", i)).build();
             studentService.save(student);
         }
     }
