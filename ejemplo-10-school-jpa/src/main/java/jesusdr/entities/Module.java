@@ -11,13 +11,13 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-@Table(name="modules")
+@AllArgsConstructor
+@Table(name = "modules")
 public class Module {
     @Id
     private String moduleId;
-    @Column(length = 100, nullable = false, unique = true)
+    @Column(length = 100, nullable = false)
     private String name;
     @Column(length = 2000)
     private String description;

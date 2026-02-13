@@ -2,14 +2,17 @@
 <html lang="es" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"/>
     <title>Listado de profesores</title>
 </head>
 <body>
 <h1>Listado de profesores</h1>
+<p><a th:href="@{/teachers/new}" class="btn btn-primary">Nuevo profesor</a></p>
 <ul>
     <li th:each="teacher: ${teachers}">
-        <a th:text="${teacher.firstName + ' ' + teacher.lastName + ' / ' + teacher.department}"
+        <a th:text="${teacher.firstName + ' ' + teacher.lastName + ' / ' + teacher.department.name}"
            th:href="@{/teachers/{id}(id=${teacher.teacherId})}"> </a>
+        <a th:href="@{/teachers/{id}/edit(id=${teacher.teacherId})}" class="btn btn-secondary">Modificar</a>
 
     </li>
 </ul>
