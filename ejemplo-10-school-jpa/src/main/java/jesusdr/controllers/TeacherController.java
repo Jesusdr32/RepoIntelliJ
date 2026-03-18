@@ -27,14 +27,14 @@ public class TeacherController {
     }
 
     @GetMapping({"", "/"})
-    public ModelAndView findAll(){
+    public ModelAndView findAll() {
         ModelAndView mv = new ModelAndView("teachers/index");
         mv.addObject("teachers", teacherService.findAll());
         return mv;
     }
 
     @GetMapping("{teacherId}")
-    public ModelAndView findById(@PathVariable Integer teacherId){
+    public ModelAndView findById(@PathVariable Integer teacherId) {
         ModelAndView mv = new ModelAndView("teachers/detail");
         Teacher teacher = teacherService.findById(teacherId).orElseThrow();
         mv.addObject("teacher", teacher);
@@ -49,16 +49,18 @@ public class TeacherController {
 
     @PostMapping("/new")
     public String newTeacherPost(@ModelAttribute("teacher") NewTeacherModel newTeacherModel, Model model) {
+
         try {
             teacherService.createNew(newTeacherModel);
         } catch (Exception e) {
             model.addAttribute("error", String.format("Se ha producido un error: %s", e.getMessage()));
             return "teachers/new";
         }
+
         return "redirect:/teachers";
     }
 
-    @GetMapping("{teacherId}/edit")
+    @GetMapping("/{teacherId}/edit")
     public String editTeacherGet(@PathVariable Integer teacherId,
                                  Model model) {
         Teacher teacher = teacherService
@@ -69,24 +71,29 @@ public class TeacherController {
         NewTeacherModel teacherModel = TeacherMapper.map(teacher);
 
         model.addAttribute("teacher", teacherModel);
-        model.addAttribute("teacherId", teacherId);
+//        model.addAttribute("teacherId", teacherId);
 
         return "teachers/edit";
     }
 
-    @PostMapping("{teacherId}/edit")
-    public String editTeacherPost(@PathVariable Integer teacherId, @ModelAttribute("teacher") NewTeacherModel newTeacherModel, Model model) {
+    @PostMapping("/{teacherId}/edit")
+    public String editTeacherPost(@PathVariable Integer teacherId,
+                                  @ModelAttribute("teacher") NewTeacherModel newTeacherModel,
+                                  Model model) {
         try {
             teacherService.update(teacherId, newTeacherModel);
         } catch (Exception e) {
             model.addAttribute("error", String.format("Se ha producido un error: %s", e.getMessage()));
             return "teachers/edit";
         }
+
         return "redirect:/teachers";
     }
+
 
     @ModelAttribute("departments")
     public List<Department> getAllDepartments() {
         return departmentService.findAll();
     }
+
 }

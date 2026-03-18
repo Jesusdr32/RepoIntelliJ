@@ -9,6 +9,7 @@
 <div class="container">
     <h1>Nuevo estudiante</h1>
     <form method="post" th:object="${student}">
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
         <div class="mb-3">
             <label for="document-id" class="form-label">DNI / NIE / Pasaporte:</label>
             <input type="text" class="form-control" id="document-id" th:field="*{documentId}">

@@ -28,7 +28,7 @@ public class StudentController {
     }
 
     @GetMapping("/{studentId}")
-    public ModelAndView detail(@PathVariable Long studentId){
+    public ModelAndView detail(@PathVariable Long studentId) {
         ModelAndView mv = new ModelAndView("students/detail");
         Student student = studentService.findById(studentId).orElseThrow();
         mv.addObject("student", student);
@@ -37,13 +37,13 @@ public class StudentController {
 
     @GetMapping("{studentId}/add-module/{moduleId}")
     public void addModule(@PathVariable Long studentId,
-                          @PathVariable String moduleId){
+                          @PathVariable String moduleId) {
         studentService.addModule(studentId, moduleId);
 
     }
 
     @GetMapping("/new")
-    public String newStudentGet(Model model){
+    public String newStudentGet(Model model) {
         model.addAttribute("student", new NewStudentModel());
         model.addAttribute("modules", moduleService.findAll());
         return "students/new";
@@ -51,13 +51,12 @@ public class StudentController {
 
 
     @PostMapping("/new")
-    public String newStudentPost(@ModelAttribute("student") NewStudentModel newStudentModel, Model model){
+    public String newStudentPost(@ModelAttribute("student") NewStudentModel newStudentModel,
+                                 Model model) {
         System.out.printf("Estudiante recibido:\n%s\n", newStudentModel);
-
         try {
             Student newStudent = studentService.createNew(newStudentModel);
-
-            return String.format("reirect:/students/%d", newStudent.getStudentId());
+            return String.format("redirect:/students/%d", newStudent.getStudentId());
         } catch (Exception e) {
             System.out.println("Se ha producido un error");
             e.printStackTrace();
@@ -65,7 +64,6 @@ public class StudentController {
             return "students/new";
         }
     }
-
 
 
 }
