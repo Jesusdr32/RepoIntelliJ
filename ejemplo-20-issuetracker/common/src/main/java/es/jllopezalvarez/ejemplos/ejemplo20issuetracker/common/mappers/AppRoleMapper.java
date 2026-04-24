@@ -6,5 +6,5 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface AppRoleMapper {
-    AppRoleDto map(AppRole role);
+    AppRoleDto map (AppRole role);
 }

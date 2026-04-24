@@ -10,5 +10,4 @@ import lombok.*;
 public class AppRoleDto {
     private String name;
     private String description;
-
 }

@@ -1,5 +1,6 @@
 package es.jllopezalvarez.ejemplos.ejemplo20issuetracker.common.dto.api;
 
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.HashSet;
@@ -15,5 +16,4 @@ public class ProjectDto {
     private String name;
     private String description;
     private Set<AppUserDto> members = new HashSet<>();
-
 }
